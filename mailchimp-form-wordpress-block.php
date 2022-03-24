@@ -4,24 +4,22 @@
  * Description:       Example static block scaffolded with Create Block tool.
  * Requires at least: 5.8
  * Requires PHP:      7.0
- * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Version:           1.0.0
+ * Author:            Navanath Bhosale
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       mailchimp-form-wordpress-block
+ * Text Domain:       mfwb
  *
- * @package           create-block
+ * @package           mailchimp-form-wordpress-block
  */
 
 /**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
+ * Set constants
  */
-function create_block_mailchimp_form_wordpress_block_block_init() {
-	register_block_type( __DIR__ . '/build' );
-}
+define( 'MFWB_FILE', __FILE__ );
+define( 'MFWB_BASE', plugin_basename( MFWB_FILE ) );
+define( 'MFWB_DIR', plugin_dir_path( MFWB_FILE ) );
+define( 'MFWB_URL', plugins_url( '/', MFWB_FILE ) );
+define( 'MFWB_VER', '1.0.0' );
 
-add_action( 'init', 'create_block_mailchimp_form_wordpress_block_block_init' );
+require_once 'mfwb-loader.php';
