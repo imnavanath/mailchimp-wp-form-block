@@ -4,6 +4,11 @@
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
+import { InspectorControls } from '@wordpress/block-editor';
+import { Disabled, PanelBody } from '@wordpress/components';
+import { Component, useState } from '@wordpress/element';
+import ServerSideRender from '@wordpress/server-side-render';
+import PropTypes from 'prop-types';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -29,13 +34,34 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
-	return (
-		<p {...useBlockProps()}>
-			{__(
-				'Mailchimp Form Wordpress Block – hello from the editor!',
-				'mailchimp-form-wordpress-block'
-			)}
-		</p>
-	);
+
+class Edit extends Component {
+
+	constructor() {
+        super( ...arguments );
+	}
+
+	render() {
+		return (
+			<InspectorControls>
+				<PanelBody
+					title={ __( 'Content', 'mfwb' ) }
+					initialOpen
+				>
+					<ToggleControl
+						label = "Fixed Background"
+						help = {
+							hasFixedBackground
+							? 'Has fixed background.'
+							: 'No fixed background.'
+						}
+						checked = { hasFixedBackground }
+						onChange = { true }
+					/>
+				</PanelBody>
+			</InspectorControls>
+		);
+	}
 }
+
+export default Edit;

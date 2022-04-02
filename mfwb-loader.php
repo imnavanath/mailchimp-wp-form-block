@@ -8,6 +8,8 @@
 
 namespace MFWB;
 
+use MFWB\Admin\Menu;
+
 /**
  * MFWB_Loader
  *
@@ -77,6 +79,25 @@ class MFWB_Loader {
 		add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
 
 		add_action( 'init', [ $this, 'mailchimp_form_wordpress_block_block_creator' ] );
+
+		// $this->setup_classes();
+	}
+
+	/**
+	 * Include required classes.
+	 */
+	public function setup_classes() {
+
+		/* Init API */
+		ApiInit::get_instance();
+
+		if ( is_admin() ) {
+			/* Setup Menu */
+			AdminMenu::get_instance();
+
+			/* Ajax init */
+			AjaxInit::get_instance();
+		}
 	}
 
 	/**

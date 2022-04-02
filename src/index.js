@@ -21,15 +21,33 @@ import Edit from './edit';
 import save from './save';
 
 /**
+ * External dependencies
+ */
+import { __ } from '@wordpress/i18n';
+
+/**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType('create-block/mailchimp-form-wordpress-block', {
+	title: __( 'Navanath', 'mfwb' ),
+	description: __( 'Display a grid of your all-time best selling products.', 'mfwb' ),
+	supports: {
+		align: [ 'wide', 'full' ],
+		html: false,
+	},
 	/**
 	 * @see ./edit.js
 	 */
-	edit: Edit,
+	edit: props => {
+		return [
+			<Edit { ...props } />,
+			<div>
+				{ __( 'Edit text build.', 'mfwb' ) }
+			</div>
+		];
+	},
 	/**
 	 * @see ./save.js
 	 */
